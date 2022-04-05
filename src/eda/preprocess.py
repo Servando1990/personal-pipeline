@@ -1,11 +1,11 @@
-
+# %%
 import numpy as np
 import pandas as pd
-from pandas import DataFrame
+# %%
 
 
 class Preprocess:
-    def missing_values_table(self, df: DataFrame):
+    def missing_values_table(self, df: pd.DataFrame):
 
         """
         Generates a missing values table of a given dataframe
@@ -82,7 +82,7 @@ class Preprocess:
 
         return purchases, users
 
-    def feature_eng(self, features: pd.DataFrame):
+    def feature_eng(self, features: pd.DataFrame): 
         """Helper function that creates aggregated features of a given dataset
 
         Args:
@@ -93,7 +93,7 @@ class Preprocess:
             clustering_data: pandas Dataframe
             classification_data
         """
-
+        
         # Time feature just quarter
         features["purchased_at_quarter"] = features["purchased_at"].dt.quarter
         features["purchased_at_year"] = features["purchased_at"].dt.year
@@ -178,6 +178,21 @@ class Preprocess:
 
         return post_analysis, clustering_data, classification_data
 
+    # %%
+    def grouped_feature_eng(df: pd.DataFrame, grouped_feature: str, features: list) -> pd.DataFrame:
+
+        
+        if grouped_feature != "" and features != []:
+            new_features = []
+            for col in df[[c for c in df.columns if c in features]].columns:
+                df[col + '_sum'] = df.groupby(grouped_feature).transform('sum')
+
+                new_features.append(col)
+        return df
+
+            
+
+    # %%
     def detect_outliers_boxplot(self, data, features, fac=1.5):
 
         # median = data.loc[:, features].median()
