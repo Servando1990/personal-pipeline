@@ -1,0 +1,7 @@
+Cohesion: break down into atomic functions.
+Distribute responsabilities across code
+
+Coupling: Interdependency between mdodules
+
+Dependency invesion: create an anstrac class to separte 2 mehtods.
+

@@ -37,50 +37,31 @@ class Preprocess:
 
         return mis_val_table_ren_columns
 
-    def change_dtypes(self, purchases: pd.DataFrame, users: pd.DataFrame):
-        """Basic functions to convert dtypes and remove duplicates
+
+
+    def change_data_types(self, df :pd.DataFrame, start_column: str, end_column: str, output_dtype):
+        """ Change pandas dtypes based on index position
 
         Args:
-            purchases (pd.DataFrame)
-            users (pd.DataFrame):
+            df (pd.DataFrame): 
+            start_column (str): 
+            end_column (str):
+            output_dtype (_type_): 
 
         Returns:
-            purchases (pd.DataFrame)
-            users (pd.DataFrame):
-
+            df (pd.Dataframe): with desired dtypes
         """
-        # Save a raw copy of data
-        # purchases_raw = purchases.copy()
-        # users_raw = users.copy()
+        columns = list(df.columns)
+        start = columns.index(start_column)
+        end = columns.index(end_column)
 
-        # Change datatype
-        # Justification: 
-        # According with the data dictionary some datetypes are wrong like product
-        purchases["purchased_at"] = pd.to_datetime(purchases["purchased_at"])
-        purchases["user_id"] = purchases["user_id"].astype(object)
-        purchases["product"] = purchases["product"].astype(object)
-        purchases["product2"] = purchases["product2"].astype(object)
-        purchases["value"] = purchases["value"].astype(float)
+        for index, col in enumerate(columns):
+            if (start <= index) & (index <= end):
+                df[col] = df[col].astype(output_dtype)
+            
+        return df 
+        
 
-        # Drop duplicates
-        # Justification: We are droping duplicates since this is a transactional dataset
-        purchases = purchases.drop_duplicates()
-
-        users["user_id"] = users["user_id"].astype(object)
-        users["created_at"] = pd.to_datetime(users["created_at"])
-        # users['birthyear'] = users['birthyear'].astype(int)
-        users["gender"] = users["gender"].astype(object)
-        users["maildomain"] = users["maildomain"].astype(object)
-        users["region"] = users["region"].astype(object)
-        users["orig_1"] = users["orig_1"].astype(object)
-        users["orig_2"] = users["orig_2"].astype(object)
-        users["utm_src"] = users["utm_src"].astype(object)
-        users["utm_med"] = users["utm_med"].astype(object)
-        users["utm_cpg"] = users["utm_cpg"].astype(object)
-        users["channel"] = users["channel"].astype(object)
-        users["is_active"] = users["is_active"].astype(object)
-
-        return purchases, users
 
     def feature_eng(self, features: pd.DataFrame): 
         """Helper function that creates aggregated features of a given dataset
@@ -178,7 +159,7 @@ class Preprocess:
 
         return post_analysis, clustering_data, classification_data
 
-    # %%
+
     def grouped_feature_eng(df: pd.DataFrame, grouped_feature: str, features: list) -> pd.DataFrame:
 
         
@@ -192,7 +173,7 @@ class Preprocess:
 
             
 
-    # %%
+
     def detect_outliers_boxplot(self, data, features, fac=1.5):
 
         # median = data.loc[:, features].median()
@@ -202,13 +183,14 @@ class Preprocess:
         iqr = q75 - q25
 
         lower_threshold = q25 - (fac * iqr)
-        print("lower threshold")
+        # print("lower threshold")
         print(lower_threshold)
         upper_threshold = q75 + (fac * iqr)
-        print("upper threshold")
+        # print("upper threshold")
         print(upper_threshold)
         isoutlier = data.loc[:, features].apply(
             lambda x: np.any((x < lower_threshold) | (x > upper_threshold)), axis=1
         )
 
         return isoutlier
+
