@@ -63,102 +63,6 @@ class Preprocess:
         
 
 
-    def feature_eng(self, features: pd.DataFrame): 
-        """Helper function that creates aggregated features of a given dataset
-
-        Args:
-            features (pd.DataFrame):
-
-        Returns:
-            post_analisys: pandas Dataframe
-            clustering_data: pandas Dataframe
-            classification_data
-        """
-        
-        # Time feature just quarter
-        features["purchased_at_quarter"] = features["purchased_at"].dt.quarter
-        features["purchased_at_year"] = features["purchased_at"].dt.year
-        # Purchase age is a educated guess of the users age
-        features["purchase_age"] = features.apply(
-            lambda x: x["purchased_at_year"] - x["birthyear"], axis=1
-        )
-        # Total value per user: strategy sum all values grouped per user
-        features["user_total_value"] = features.groupby("user_id")["value"].transform(
-            "sum"
-        )
-        # how long does an user take on average to buy
-        features["time_to_purchase"] = features["purchased_at"] - features["created_at"]
-
-        features["mean_time_to_purchase_per_user"] = features.groupby("user_id")[
-            "time_to_purchase"
-        ].transform("mean")
-        # features['mean_time_to_purchase_per_user_days'] = features['mean_time_to_purchase_per_user_days'].dt.days
-
-        # Min purchase time per user
-        features["min_time_to_purchase_per_user"] = features.groupby("user_id")[
-            "time_to_purchase"
-        ].transform("min")
-        # features['min_time_to_purchase_per_user_minute'] = features['min_time_to_purchase_per_user_minute'].dt.minute
-
-        # Max purchases time per user
-        features["max_time_to_purchase_per_user"] = features.groupby("user_id")[
-            "time_to_purchase"
-        ].transform("max")
-        # features['max_time_to_purchase_per_user_days'] = features['max_time_to_purchase_per_user_days'].dt.days
-
-        # How many purchases per user
-        features["user_purchases"] = features.groupby("user_id")["value"].transform(
-            "count"
-        )
-
-        # total_value_per_channel
-        features["total_value_per_channel"] = features.groupby("channel")[
-            "value"
-        ].transform("sum")
-        # total_value_per_region
-        features["total_value_per_region"] = features.groupby("region")[
-            "value"
-        ].transform("sum")
-        # total_value_per_utm_src
-        features["total_value_per_utm_src"] = features.groupby("utm_src")[
-            "value"
-        ].transform("sum")
-        # total_value_per_utm_src
-        features["total_value_per_orig_1"] = features.groupby("orig_1")[
-            "value"
-        ].transform("sum")
-
-        # Post Analysis Dataset
-        post_analysis = features.copy()
-        # Clustering dataset
-        clustering_data = features.drop(
-            columns=[
-                "user_id",
-                "created_at",
-                "birthyear",
-                "purchased_at_year",
-                "purchased_at",
-            ]
-        )
-        # Changing timedelta variables
-        clustering_data["time_to_purchase"] = clustering_data[
-            "time_to_purchase"
-        ].dt.days  # .astype('int')
-        clustering_data["mean_time_to_purchase_per_user"] = clustering_data[
-            "mean_time_to_purchase_per_user"
-        ].dt.days  # .astype('int')
-        clustering_data["min_time_to_purchase_per_user"] = clustering_data[
-            "min_time_to_purchase_per_user"
-        ].dt.days  # .astype('int')
-        clustering_data["max_time_to_purchase_per_user"] = clustering_data[
-            "max_time_to_purchase_per_user"
-        ].dt.days  # .astype('int')
-
-        # Clasification dataset
-        classification_data = clustering_data.copy()
-
-        return post_analysis, clustering_data, classification_data
-
 # %%
     def grouped_feature_eng(df: pd.DataFrame, grouped_feature: str, features: list, target_feature: str):
         """Feature engineering based on grouped transformations 
@@ -177,7 +81,32 @@ class Preprocess:
         for  index, col in enumerate(features):
             df[col + '_sum'] = df.groupby(grouped_feature)[target_feature].transform('sum')
             df[col + '_mean'] = df.groupby(grouped_feature)[target_feature].transform('mean')
-            df[col + '_min'] = df.groupby(grouped_feature)[target_feature].transform('max')
+            df[col + '_min'] = df.groupby(grouped_feature)[target_feature].transform('min')
+            df[col + '_max'] = df.groupby(grouped_feature)[target_feature].transform('max')
+            df[col + '_len'] = df.groupby(grouped_feature)[target_feature].transform('len')
+            df[col + '_count'] = df.groupby(grouped_feature)[target_feature].transform('count')
+        return df
+# %%
+    def datetime_transform(df:pd.DataFrame, date_feature: str):
+        """Aggregate datetime features
+
+        Args:
+            df (pd.DataFrame): 
+            date_feature (str): 
+
+        Returns:
+            df: 
+        """
+
+        df[date_feature] = pd.to_datetime(df[date_feature])
+        df[date_feature + '_month'] = df[date_feature].dt.month
+        df[date_feature + '_day'] = df[date_feature].dt.day
+        df[date_feature + '_year'] = df[date_feature].dt.year
+        df[date_feature + '_hour'] = df[date_feature].dt.hour
+        df[date_feature + '_minute'] = df[date_feature].dt.minute
+        df[date_feature + '_second'] = df[date_feature].dt.second
+
+
         return df
 
  # %%           
