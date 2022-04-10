@@ -159,19 +159,28 @@ class Preprocess:
 
         return post_analysis, clustering_data, classification_data
 
+# %%
+    def grouped_feature_eng(df: pd.DataFrame, grouped_feature: str, features: list, target_feature: str):
+        """Feature engineering based on grouped transformations 
+        # TODO Come up with a better summary
 
-    def grouped_feature_eng(df: pd.DataFrame, grouped_feature: str, features: list) -> pd.DataFrame:
+        Args:
+            df (pd.DataFrame): Dataframe to be transformed
+            grouped_feature (str): Feature selected to grouped the transformation. Ej 'user_id
+            features (list): features to be transform
+            target_feature (str): feature to be used the agregated transformation (Numerical)
 
-        
-        if grouped_feature != "" and features != []:
-            new_features = []
-            for col in df[[c for c in df.columns if c in features]].columns:
-                df[col + '_sum'] = df.groupby(grouped_feature).transform('sum')
+        Returns:
+            df: transfomed pd.DataFrame
+        """
 
-                new_features.append(col)
+        for  index, col in enumerate(features):
+            df[col + '_sum'] = df.groupby(grouped_feature)[target_feature].transform('sum')
+            df[col + '_mean'] = df.groupby(grouped_feature)[target_feature].transform('mean')
+            df[col + '_min'] = df.groupby(grouped_feature)[target_feature].transform('max')
         return df
 
-            
+ # %%           
 
 
     def detect_outliers_boxplot(self, data, features, fac=1.5):
