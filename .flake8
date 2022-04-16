@@ -1,0 +1,4 @@
+[flake8]
+select = C,F
+max-complexity = 10
+max-line-length = 100
