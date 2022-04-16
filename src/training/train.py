@@ -11,58 +11,10 @@ from sklearn.preprocessing import StandardScaler
 
 
 class Train:
-    def clustering(
-        self,
-        df: pd.DataFrame,
-        classification_data: pd.DataFrame,
-        post_analysis: pd.DataFrame,
-    ): 
-# TODO REMOVE THIS FUNCTION
-        """Functions that makes preprocessing steps for clustering and predicts clusters given any data
 
-        Args:
-            df (pd.DataFrame):
-            classification_data (pd.DataFrame):
-            post_analysis (pd.DataFrame):
-
-        Returns:
-            classification_data:
-            post_analysis
-        """
-
-        imputer = SimpleImputer(missing_values=np.nan, strategy="most_frequent")
-        df[:] = imputer.fit_transform(df)
-
-        # Encoding
-        df["region"] = df["region"].astype("category")
-        df["utm_src"] = df["utm_src"].astype("category")
-        df["maildomain"] = df["maildomain"].astype("category")
-        df["channel"] = df["channel"].astype("category")
-        df["product"] = df["product"].astype("category")
-        df["product2"] = df["product2"].astype("category")
-        df["is_active"] = df["is_active"].astype("category")
-
-        encoder = CountFrequencyEncoder(encoding_method="frequency")
-        encoder.fit(df)
-        df = encoder.transform(df)
-
-        # Scaling
-        scaler = StandardScaler()
-        scaled_clustering = scaler.fit_transform(df)
-
-        # Kmeans
-        km_4 = KMeans(n_clusters=4, random_state=123)
-
-        classification_data["cluster"] = km_4.fit_predict(scaled_clustering)
-        # classification_data_1it = classification_data.drop(columns=['orig_1', 'maildomain'], axis=1)
-        # Encoding clasifcation data
-        # classification_data_2it = pd.get_dummies(classification_data_1it, drop_first=True)
-
-        post_analysis["cluster"] = km_4.fit_predict(scaled_clustering)
-
-        return classification_data, post_analysis
 
     def objective(trial, X_train: np.ndarray, y_train: np.ndarray, cv=7):
+        # TODO SET as parameters of function: objective, eval_metric, metric
 
         param_grid = {
             "n_estimators": trial.suggest_categorical("n_estimators", [10, 100]),

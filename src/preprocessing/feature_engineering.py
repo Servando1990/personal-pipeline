@@ -31,8 +31,8 @@ class Preprocess:
 
 
     def grouped_feature_eng(self,df: pd.DataFrame, grouped_feature: str, features: list, target_feature: str):
-        """Feature engineering based on grouped transformations 
-        # TODO Come up with a better summary
+        """ Transform aggreagation based on grouping an specific feature 
+        
 
         Args:
             df (pd.DataFrame): Dataframe to be transformed
@@ -49,7 +49,7 @@ class Preprocess:
             df[col + '_mean'] = df.groupby(grouped_feature)[target_feature].transform('mean')
             df[col + '_min'] = df.groupby(grouped_feature)[target_feature].transform('min')
             df[col + '_max'] = df.groupby(grouped_feature)[target_feature].transform('max')
-            df[col + '_len'] = df.groupby(grouped_feature)[target_feature].transform('len')
+            # df[col + '_len'] = df.groupby(grouped_feature)[target_feature].transform('len')
             df[col + '_count'] = df.groupby(grouped_feature)[target_feature].transform('count')
         return df
 
@@ -58,16 +58,17 @@ class Preprocess:
 
         Args:
             df (pd.DataFrame): 
-            date_feature (str): 
+            date_feature (str): df column to be transformed
 
         Returns:
-            df: 
+            df: Dataframe with date transformations, (month, day, year, hour, minute, secod)
         """
 
         df[date_feature] = pd.to_datetime(df[date_feature])
         df[date_feature + '_month'] = df[date_feature].dt.month
         df[date_feature + '_day'] = df[date_feature].dt.day
         df[date_feature + '_year'] = df[date_feature].dt.year
+        df[date_feature + '_quarter'] = df[date_feature].dt.quarter
         df[date_feature + '_hour'] = df[date_feature].dt.hour
         df[date_feature + '_minute'] = df[date_feature].dt.minute
         df[date_feature + '_second'] = df[date_feature].dt.second

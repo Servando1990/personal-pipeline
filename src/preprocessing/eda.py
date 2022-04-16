@@ -1,3 +1,4 @@
+from typing import Any
 import numpy as np
 import pandas as pd
 
@@ -38,8 +39,8 @@ class Eda:
 
         return mis_val_table_ren_columns
 
-    def detect_outliers_boxplot(self, df, features, fac=1.5): # TODO type hints
-
+    def detect_outliers_boxplot(self, df: pd.DataFrame, features, fac=1.5): 
+        # TODO Find out what type hint is features: it could be a str: 'col' or list: [''col1', 'col2']
         # median = data.loc[:, features].median()
         q25 = df.loc[:, features].quantile(0.25)
         q75 = df.loc[:, features].quantile(0.75)
@@ -53,13 +54,19 @@ class Eda:
         # print("upper threshold")
         print(upper_threshold)
         isoutlier = df.loc[:, features].apply(
-            lambda x: np.any((x < lower_threshold) | (x > upper_threshold)), axis=1
+            lambda x: np.any((x < lower_threshold) | (x > upper_threshold))
         )
 
         return isoutlier
 
     def plot_cat_feature(
-        self, df: pd.DataFrame, feature, label_rotation=False, horizontal_layout=True
+        self, 
+        df: pd.DataFrame, 
+        feature: str, 
+        target_feature: str,
+        label_rotation=False, 
+        horizontal_layout=True
+        
     ):
 
         """
@@ -82,8 +89,8 @@ class Eda:
         df1 = pd.DataFrame({feature: temp.index, "Count of values": temp.values})
 
         # Calculate the percentage of buying customer per category value
-        cat_perc = df[[feature, "customer"]].groupby([feature], as_index=False).mean()
-        cat_perc.sort_values(by="customer", ascending=False, inplace=True)
+        cat_perc = df[[feature, target_feature]].groupby([feature], as_index=False).mean()
+        cat_perc.sort_values(by=target_feature, ascending=False, inplace=True)
 
         if horizontal_layout:
             fig, (ax1, ax2) = plt.subplots(ncols=2, figsize=(12, 6))
@@ -95,7 +102,7 @@ class Eda:
             s.set_xticklabels(s.get_xticklabels(), rotation=90)
 
         s = sns.barplot(
-            ax=ax2, x=feature, y="customer", order=cat_perc[feature], data=cat_perc
+            ax=ax2, x=feature, y=target_feature, order=cat_perc[feature], data=cat_perc
         )
         if label_rotation:
             s.set_xticklabels(s.get_xticklabels(), rotation=90)
