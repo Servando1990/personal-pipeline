@@ -2,6 +2,10 @@
 __pycache__/
 *.py[cod]
 *$py.class
+# Folders
+/images
+/data
+/notebooks
 
 # C extensions
 *.so
@@ -13,8 +17,6 @@ __pycache__/
 /docs/_build/
 /src/*.egg-info/
 __pycache__/
-/images
-/data
 /*.csv
 /*.ipynb
 /*.DS_Store
