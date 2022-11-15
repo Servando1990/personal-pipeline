@@ -79,10 +79,12 @@ class Preprocess:
         df[date_feature] = pd.to_datetime(df[date_feature])
         df[date_feature + "_month"] = df[date_feature].dt.month
         df[date_feature + "_day"] = df[date_feature].dt.day
-        df[date_feature + "_year"] = df[date_feature].dt.year
-        df[date_feature + "_quarter"] = df[date_feature].dt.quarter
-        df[date_feature + "_hour"] = df[date_feature].dt.hour
-        df[date_feature + "_minute"] = df[date_feature].dt.minute
-        df[date_feature + "_second"] = df[date_feature].dt.second
+        # df[date_feature + "_day_name"] = df[date_feature].dt.day_name()
+        # df[date_feature + "_week"] = df[date_feature].dt.isocalendar().week
+        # df[date_feature + "_year"] = df[date_feature].dt.year
+        # df[date_feature + "_quarter"] = df[date_feature].dt.quarter
+        # df[date_feature + "_hour"] = df[date_feature].dt.hour
+        # df[date_feature + "_minute"] = df[date_feature].dt.minute
+        # df[date_feature + "_second"] = df[date_feature].dt.second
 
         return df

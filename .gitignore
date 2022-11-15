@@ -5,7 +5,8 @@ __pycache__/
 # Folders
 /images
 /data
-/notebooks
+#/notebooks
+#/past-interviews
 
 # C extensions
 *.so

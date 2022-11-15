@@ -1,0 +1,22 @@
+Mercado de Madrid. 
+
+Observaciones. 
+
+- La zona centro predomina en los espacios para rentar 
+- Los apartamentos enteros para rentar y las habitaciones son los tipos de espacios que predominan en Madrid
+- El precio medio no tiene tanta fluctuación en los barrios de Madrid, oscila entre los 170 y 50 por noche. 
+Se observa un pico en el barrio de San Blas Canillejas en donde hay un precio medio de más de 300. Esto se tiene que analizar más a fondo,
+aislando la distribución de este barrio en donde probablemente no sea una distribucion normal si no sesgada. 
+- Se observa en el mapa que la mayor concentración de areas para rentar están en la zona centro.
+- La disponibilidad para los siguientes 30 días sigue fuerte en la zona centro salvo algunos barrios como la Latina y Chamartin
+
+
+
+Que afecta el precio: 
+
+- Con respecto a la oferta de cuartos privados se observa que el número de camas afecta el precio, empezanod desde 6 camas en adelante. 
+Hay que tener en cuenta que en la oferta de habitaciones privadas pueden entrar hostales o chalets. 
+-Para la oferta de una casa o apartamento completo no afecta mucho el número de camas,el efecto de del número de camas sigue una tendencia líneal como es es esperado
+- se observa el mismo comportamiento para el número de habitaciones. En los apartamentos o casas completos la tendencia es lineal, entre más camas el precio es incrementa
+
+

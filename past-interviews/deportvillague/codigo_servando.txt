@@ -1,0 +1,19 @@
+import pandas as pd
+import json
+
+# Cargamos el csv en pandas, con separador ;
+df = pd.read_csv('~/Descargas/input_etl_data.csv', sep=";")
+
+# Cada línea de la columna via es una cadena de texto string. Cambiamos su formato a json, pero previamente
+# cambiamos las dobles comillas con formato malo “ y ” por las estandar " (ya que sino la transformación a json da
+# error)
+df['via'] = df['via'].apply(lambda row: json.loads(row.replace('“', '"').replace('”', '"')))
+
+# Una vez tenemos la nueva columna via bien formateada, extraemos los campos requeridos en columnas.
+# Ponemos un control de errores para que si la key en cuestión no está, la búsqueda nos devuelva cadena vacía en lugar de error.
+df['channel'] = df['via'].apply(lambda row: row['channel'] if 'channel' in row else '')
+df['address_client'] = df['via'].apply(lambda row: row['source']['from']['address'] if 'address' in row['source']['from'] else '')
+df['name_client'] = df['via'].apply(lambda row: row['source']['from']['name'] if 'name' in row['source']['from'] else '')
+
+# Una vez hemos creado las 3 columnas pedidas, tal como solicita el enunciado, eliminamos la columna via.
+df.drop(['via'], axis='columns', inplace=True)
