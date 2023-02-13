@@ -1,0 +1,145 @@
+[
+    {
+        "application_id": 9711360,
+        "data": {
+            "consumerfullcredit": {
+                "subjectlist": {
+                    "reference": "128566",
+                    "consumerid": "128566",
+                    "searchoutput": "XXX "
+                },
+                "accountrating": {
+                    "noofotheraccountsbad": "0", 
+                    "noofotheraccountsgood": "3",
+                    "noofretailaccountsbad": "0",
+                    "noofretailaccountsgood": "2",
+                    "nooftelecomaccountsbad": "0",
+                    "noofautoloanaccountsbad": "0",
+                    "noofautoloanccountsgood": "0",
+                    "noofhomeloanaccountsbad": "0",
+                    "nooftelecomaccountsgood": "0",
+                    "noofhomeloanaccountsgood": "0",
+                    "noofjointloanaccountsbad": "0",
+                    "noofstudyloanaccountsbad": "0",
+                    "noofcreditcardaccountsbad": "0",
+                    "noofjointloanaccountsgood": "0",
+                    "noofstudyloanaccountsgood": "0",
+                    "noofcreditcardaccountsgood": "1",
+                    "noofpersonalloanaccountsbad": "0",
+                    "noofpersonalloanaccountsgood": "1"
+                },
+                "telephonehistory": [
+                    {
+                        "homenoupdatedondate": "08/04/2016",
+                        "hometelephonenumber": "XXX",
+                        "mobiletelephonenumber": "XXX"
+                    },
+                    {
+                        "homenoupdatedondate": "18/01/2016",
+                        "hometelephonenumber": "XXX",
+                        "mobiletelephonenumber": "XXX"
+                    },
+                    {
+                        "homenoupdatedondate": "27/08/2015",
+                        "hometelephonenumber": "XXX",
+                        "mobiletelephonenumber": "XXX"
+                    }
+                ],
+                "employmenthistory": [
+                    {
+                        "occupation": "PUBLIC SERVANTS",
+                        "updatedate": "16/09/2016",
+                        "updateondate": "16/09/2016",
+                        "employerdetail": "ALL MILITARY STAFFS"
+                    },
+                    {
+                        "occupation": "PUBLIC SERVANTS"
+                    },
+                    {
+                        "occupation": "PUBLIC SERVANTS"
+                    },
+                    {
+                        "occupation": "Army Police Defence",
+                        "employerdetail": "Nigerian navy"
+                    },
+                    {
+                        "occupation": "PUBLIC SERVANTS"
+                    }
+                ],
+                "creditaccountsummary": {
+                    "rating": "13",
+                    "amountarrear": "24,041.00",
+                    "amountarrear1": "0.00",
+                    "totalaccounts": "7",
+                    "totalaccounts1": "0",
+                    "lastjudgementdate": "-",
+                    "lastjudgementdate1": "-",
+                    "totalaccountarrear": "2",
+                    "totalaccountarrear1": "0",
+                    "totaljudgementamount": "0",
+                    "totaloutstandingdebt": "105,435.00",
+                    "totaljudgementamount1": "0",
+                    "totaloutstandingdebt1": "0.00",
+                    "totaldishonouredamount": "0.00",
+                    "totalmonthlyinstalment": "77,404.00",
+                    "totalnumberofjudgement": "0",
+                    "totaldishonouredamount1": "0.00",
+                    "totalmonthlyinstalment1": "0.00",
+                    "totalnumberofjudgement1": "0",
+                    "totalnumberofdishonoured": "0",
+                    "totalnumberofdishonoured1": "0",
+                    "totalaccountingodcondition": "0",
+                    "totalaccountingodcondition1": "0"
+                },
+                "deliquencyinformation": {
+                    "accountno": "2150224012",
+                    "periodnum": "20140930",
+                    "subscribername": "First City Monument Bank Ltd Lagos",
+                    "monthsinarrears": "13"
+                },
+                "creditagreementsummary": [
+                    {
+                        "currency": "NGN",
+                        "accountno": "0324562636176001",
+                        "closeddate": "01/11/2020",
+                        "loanduration": "1170",
+                        "subaccountno": null,
+                        "accountstatus": "Open",
+                        "amountoverdue": "22,441.39",
+                        "subscribername": "First City Monument Bank Ltd Lagos",
+                        "lastupdateddate": "07/08/2020",
+                        "instalmentamount": "24,368.39",
+                        "currentbalanceamt": "82,733.58",
+                        "dateaccountopened": "15/01/2016",
+                        "openingbalanceamt": "814,700.00",
+                        "performancestatus": "Performing",
+                        "repaymentfrequency": "Monthly",
+                        "indicatordescription": "Personal secured loan"
+                    },
+                    {
+                        "currency": "NGN",
+                        "accountno": "0324602636176001",
+                        "closeddate": "30/11/2019",
+                        "loanduration": "59",
+                        "subaccountno": null,
+                        "accountstatus": "Closed",
+                        "amountoverdue": "0.00",
+                        "subscribername": "First City Monument Bank Ltd Lagos",
+                        "lastupdateddate": "08/08/2017",
+                        "instalmentamount": "17,036.09",
+                        "currentbalanceamt": "0.00",
+                        "dateaccountopened": "28/08/2014",
+                        "openingbalanceamt": "704,000.00",
+                        "performancestatus": "Performing",
+                        "repaymentfrequency": "Monthly",
+                        "indicatordescription": "Installment account",
+                        "currentbalancedebitind": "C"
+                    }
+
+                ]
+
+
+            }
+        }
+    }
+]

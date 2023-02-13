@@ -1,4 +1,5 @@
 import pandas as pd
+import List
 
 
 class Preprocess:
@@ -8,13 +9,13 @@ class Preprocess:
         """Change pandas dtypes based on index position
 
         Args:
-            df (pd.DataFrame):
-            start_column (str):
-            end_column (str):
-            output_dtype (_type_):
+            df (pd.DataFrame): DataFrame to be modified
+            start_column (str): First column name to start changing dtypes
+            end_column (str): Last column name to stop changing dtypes
+            output_dtype (type): Desired data type to convert to
 
         Returns:
-            df (pd.Dataframe): with desired dtypes
+            df (pd.Dataframe): DataFrame with desired dtypes
         """
         columns = list(df.columns)
         start = columns.index(start_column)
@@ -29,62 +30,77 @@ class Preprocess:
     def grouped_feature_eng(
         self,
         df: pd.DataFrame,
-        grouped_feature: str,
+        group_features: list,
         features: list,
         target_feature: str,
     ):
-        """Transform aggreagation based on grouping an specific feature
-
+        """Transform aggregation based on grouping a set of features
 
         Args:
             df (pd.DataFrame): Dataframe to be transformed
-            grouped_feature (str): Feature selected to grouped the transformation. Ej 'user_id
-            features (list): features to be transform
-            target_feature (str): feature to be used the agregated transformation (Numerical)
+            group_features (list): List of features selected to group the transformation.
+            features (list): List of features to be transformed.
+            target_feature (str): Feature to be used in the aggregated transformation (Numerical)
 
         Returns:
-            df: transfomed pd.DataFrame
+            df: Transformed pd.DataFrame
         """
 
-        for index, col in enumerate(features):
-            df[col + "_sum"] = df.groupby(grouped_feature)[target_feature].transform(
+        for feature in features:
+            df[feature + "_sum"] = df.groupby(group_features)[target_feature].transform(
                 "sum"
             )
-            df[col + "_mean"] = df.groupby(grouped_feature)[target_feature].transform(
-                "mean"
-            )
-            df[col + "_min"] = df.groupby(grouped_feature)[target_feature].transform(
+            df[feature + "_mean"] = df.groupby(group_features)[
+                target_feature
+            ].transform("mean")
+            df[feature + "_min"] = df.groupby(group_features)[target_feature].transform(
                 "min"
             )
-            df[col + "_max"] = df.groupby(grouped_feature)[target_feature].transform(
+            df[feature + "_max"] = df.groupby(group_features)[target_feature].transform(
                 "max"
             )
-            # df[col + '_len'] = df.groupby(grouped_feature)[target_feature].transform('len')
-            df[col + "_count"] = df.groupby(grouped_feature)[target_feature].transform(
-                "count"
-            )
+            df[feature + "_count"] = df.groupby(group_features)[
+                target_feature
+            ].transform("count")
+
         return df
 
-    def datetime_transform(self, df: pd.DataFrame, date_feature: str):
+    def datetime_transform(
+        self,
+        df: pd.DataFrame,
+        date_feature: str,
+        features: List[str] = ["month", "day"],
+    ):
         """Aggregate datetime features
 
         Args:
             df (pd.DataFrame):
             date_feature (str): df column to be transformed
+            features (List[str]): List of date features to extract from the date_feature column
 
         Returns:
             df: Dataframe with date transformations, (month, day, year, hour, minute, secod)
         """
 
         df[date_feature] = pd.to_datetime(df[date_feature])
-        df[date_feature + "_month"] = df[date_feature].dt.month
-        df[date_feature + "_day"] = df[date_feature].dt.day
-        # df[date_feature + "_day_name"] = df[date_feature].dt.day_name()
-        # df[date_feature + "_week"] = df[date_feature].dt.isocalendar().week
-        # df[date_feature + "_year"] = df[date_feature].dt.year
-        # df[date_feature + "_quarter"] = df[date_feature].dt.quarter
-        # df[date_feature + "_hour"] = df[date_feature].dt.hour
-        # df[date_feature + "_minute"] = df[date_feature].dt.minute
-        # df[date_feature + "_second"] = df[date_feature].dt.second
+
+        if "month" in features:
+            df[date_feature + "_month"] = df[date_feature].dt.month
+        if "day" in features:
+            df[date_feature + "_day"] = df[date_feature].dt.day
+        if "day_name" in features:
+            df[date_feature + "_day_name"] = df[date_feature].dt.day_name()
+        if "week" in features:
+            df[date_feature + "_week"] = df[date_feature].dt.isocalendar().week
+        if "year" in features:
+            df[date_feature + "_year"] = df[date_feature].dt.year
+        if "quarter" in features:
+            df[date_feature + "_quarter"] = df[date_feature].dt.quarter
+        if "hour" in features:
+            df[date_feature + "_hour"] = df[date_feature].dt.hour
+        if "minute" in features:
+            df[date_feature + "_minute"] = df[date_feature].dt.minute
+        if "second" in features:
+            df[date_feature + "_second"] = df[date_feature].dt.second
 
         return df
