@@ -2,31 +2,7 @@ import pandas as pd
 import List
 
 
-class Preprocess:
-    def change_data_types(
-        self, df: pd.DataFrame, start_column: str, end_column: str, output_dtype
-    ):
-        """Change pandas dtypes based on index position
-
-        Args:
-            df (pd.DataFrame): DataFrame to be modified
-            start_column (str): First column name to start changing dtypes
-            end_column (str): Last column name to stop changing dtypes
-            output_dtype (type): Desired data type to convert to
-
-        Returns:
-            df (pd.Dataframe): DataFrame with desired dtypes
-        """
-        columns = list(df.columns)
-        start = columns.index(start_column)
-        end = columns.index(end_column)
-
-        for index, col in enumerate(columns):
-            if (start <= index) & (index <= end):
-                df[col] = df[col].astype(output_dtype)
-
-        return df
-
+class FeatureEngineeringProcess:
     def grouped_feature_eng(
         self,
         df: pd.DataFrame,
