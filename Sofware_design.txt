@@ -5,3 +5,51 @@ Coupling: Interdependency between mdodules
 
 Dependency invesion: create an anstrac class to separte 2 mehtods.
 
+My analysis is the following: 
+Having a dataset of sales data with the following variables:
+- Data and Value.
+- min date  = 2017-01-01 00:00:00
+- max date = 2018-12-01 00:00:00
+
+And 3 seperate datasets:
+tv_spent_df = Investment in TV promotion for different channels
+With the following dates:
+TV Spent min date: 2019-01-07 00:00:00
+TV Spent max date: 2021-07-12 00:00:00
+Glimpse of the dataset:
+        Date  tv_channel_1  tv_channel_2  tv_channel_3
+0 2019-01-07           605           125     37.381706
+1 2019-01-14           508           167     34.766218
+2 2019-01-21             0           166     46.756001
+3 2019-01-28             0           191     47.218405
+4 2019-02-04             0           158     44.303406
+promo_events_df = Investment in organization of promotional events
+With the following dates:
+Promotional Events min date: 2017-02-01 00:00:00
+Promotional Events max date: 2021-12-01 00:00:00
+Glimpse of the datset:
+        Date     Topic     Region      Target    Cost  Participants
+0 2020-04-01  PULMONAR   TOULOUSE  PHYSICIANS  24.661            49
+1 2019-01-01     COUGH      PARIS  PHARMACIES  13.033            78
+2 2018-02-01  PULMONAR      PARIS     GENERAL  21.027           315
+3 2019-02-01  PULMONAR  MARSEILLE  PHYSICIANS  18.657           131
+4 2018-07-01     COUGH   TOULOUSE  PHARMACIES  26.419            53
+onsite_trade_df = Investment in trade marketing activities
+With the following dates:
+Onsite Trade min date: 2017-01-01 00:00:00
+Onsite Trade max date: 2020-12-01 00:00:00
+Glimpse of the dataset:
+        Date Region   Value
+0 2017-01-01  PARIS  1508.0
+1 2017-02-01  PARIS  1398.0
+2 2017-03-01  PARIS  1949.0
+3 2017-04-01  PARIS     0.0
+4 2017-05-01  PARIS     0.0
+
+I want to answeer two questions:
+What are the main sales drivers?
+
+Which investments are being more profitable? What’s the R.O.I. for each investment channel?
+
+Write example code for the analysis
+

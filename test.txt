@@ -1,0 +1,150 @@
+
+44:25
+1
+2
+Please answer every question to the best of your ability.  As in a mathematics examination, you may get credit for your working even if your final answer is incomplete or wrong.
+1
+Task Instructions
+Write a function sums all the odd integers in a list and returns the answer as an integer.
+Examples:
+Input: [1, 2, 3, 4, 5, 6]
+Output: 9
+Input: [3, 9, 17, 54, 67, 74]
+Output: 96
+Code Area
+Language:
+Python 3.8
+Output:
+1891011
+#!/bin/python3
+
+import math
+import random
+import re
+import traceback
+
+
+def sum_odd(lst):
+    # Write your code here.
+
+2
+Task Instructions
+Given a list consisting only of 0s and 1s as input, 
+implement a function that returns the largest number 
+of consecutive 1s from the list as an integer.
+Examples:
+Input: [1, 0, 1, 0, 1, 0, 0, 1]
+Output: 1
+Input: [1, 1, 0, 1, 1, 1, 0, 0, 1]
+Output: 3
+Code Area
+Language:
+Python 3.8
+Output:
+1891011
+#!/bin/python3
+
+import math
+import random
+import re
+import traceback
+
+
+def largest_consecutive_bits(lst):
+    # Write your code here.
+
+3
+Task Instructions
+Write a function that accepts a list of numbers and returns the sum of the n numbers that have the largest squares, where n is a parameter.  Assume the list of numbers is always distinct.
+Examples:
+Input:
+lst = [1, 2, 3, 4, 5]
+n = 3
+Output: 12
+Input:
+lst = [0, 2, 4, 6, 8]
+n = 2
+Output: 14
+Code Area
+Language:
+Python 3.8
+Output:
+1891011
+#!/bin/python3
+
+import math
+import random
+import re
+import traceback
+
+
+def largest_squares(lst, n):
+    # Write your code here.
+
+4
+Task Instructions
+Write a function that accepts two JSON dictionaries as input, 
+combines them into one dictionary and returns a count of the number of entries.
+  If the values for keys contradict, the keys should be dropped from the output.
+Examples:
+Input:
+dct1 = "{"a": 1, "b": 2}"
+dct2 = "{"c": 12}"
+Output: 3
+Code Area
+Language:
+Python 3.8
+Output:
+1891011
+#!/bin/python3
+
+import math
+import random
+import re
+import traceback
+
+
+def json_combiner(dct1, dct2):
+    # Write your code here.
+
+Make a function to combine the callculations of the ROIS ON the given datasets:
+import numpy as np 
+# Calculate the total TV spending
+tv_spending = sales_tv_spent['tv_channel_1'] + sales_tv_spent['tv_channel_2'] + sales_tv_spent['tv_channel_3']
+
+# Calculate the ROI for each TV channel
+sales_tv_spent['TV_Channel_1_ROI'] = (sales_tv_spent.sales * sales_tv_spent['tv_channel_1']) / np.where(tv_spending == 0, 1, tv_spending)
+sales_tv_spent['TV_Channel_2_ROI'] = (sales_tv_spent.sales * sales_tv_spent['tv_channel_2']) / np.where(tv_spending == 0, 1, tv_spending)
+sales_tv_spent['TV_Channel_3_ROI'] = (sales_tv_spent.sales * sales_tv_spent['tv_channel_3']) / np.where(tv_spending == 0, 1, tv_spending)
+
+# Calculate the total ROI for all TV channel investments
+sales_tv_spent['TV_ROI'] = sales_tv_spent.sales / np.where(tv_spending == 0, 1, tv_spending)
+
+# Group the data by Topic and calculate the total sales and total promotional expenses
+grouped = sales_promo_events.groupby(['Topic', 'Date']).agg({'sales': 'sum', 'Cost': 'sum'})
+grouped['ROI'] = (grouped['sales'] - grouped['Cost']) / grouped['Cost']
+
+grouped = grouped.reset_index()
+grouped_promo_events = grouped.copy()
+
+# Group the data by Topic and calculate the total sales and total promotional expenses
+grouped = sales_promo_events.groupby(['Region', 'Date']).agg({'sales': 'sum', 'Cost': 'sum'})
+grouped['ROI'] = (grouped['sales'] - grouped['Cost']) / grouped['Cost']
+
+grouped = grouped.reset_index()
+grouped_promo_events_region = grouped.copy()
+
+# Group the data by Topic and calculate the total sales and total promotional expenses
+grouped_onsite_trade = sales_onsite_trade.groupby(['Region', 'Date']).agg({'sales': 'sum', 'Cost': 'sum'})
+
+# Drop the rows where 'Cost' is 0
+grouped_onsite_trade = grouped_onsite_trade[grouped_onsite_trade['Cost'] != 0]
+
+# Calculate the ROI
+grouped_onsite_trade['ROI'] = (grouped_onsite_trade['sales'] - grouped_onsite_trade['Cost']) / grouped_onsite_trade['Cost']
+
+
+
+Highest ROI in TV promotional 80000
+Highest ROI in Promo events (Cough products) 25000
+Highest ROI in Onsite trade events (Mediterrenian Region) 3000

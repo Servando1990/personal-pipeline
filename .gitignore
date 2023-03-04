@@ -4,7 +4,7 @@ __pycache__/
 *$py.class
 # Folders
 /images
-/data
+
 #/notebooks
 #/past-interviews
 /*.zip
@@ -20,7 +20,7 @@ __pycache__/
 /src/*.egg-info/
 __pycache__/
 /*.csv
-/*.ipynb
+
 /*.DS_Store
 
 # Distribution / packaging
