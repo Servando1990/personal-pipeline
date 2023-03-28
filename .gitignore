@@ -5,7 +5,7 @@ __pycache__/
 # Folders
 /images
 
-#/notebooks
+/notebooks
 #/past-interviews
 /*.zip
 
@@ -20,6 +20,8 @@ __pycache__/
 /src/*.egg-info/
 __pycache__/
 /*.csv
+/*.json
+/*.xlsx
 
 /*.DS_Store
 
