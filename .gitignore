@@ -6,6 +6,7 @@ __pycache__/
 /images
 
 /notebooks
+/data
 #/past-interviews
 /*.zip
 .vscode/
@@ -87,6 +88,7 @@ instance/
 
 # Scrapy stuff:
 .scrapy
+.vscode
 
 # Sphinx documentation
 docs/_build/
